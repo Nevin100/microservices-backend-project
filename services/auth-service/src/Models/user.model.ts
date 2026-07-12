@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema<UserModelSchema>({
     timestamps: true
 });
 
-userSchema.statics.createUser = async function(data) {
+userSchema.statics.createUser = async function(data : UserModelSchema) {
     const hashedPassword = await argon2.hash(data.password);
     return this.create({ ...data, password: hashedPassword });
 };
